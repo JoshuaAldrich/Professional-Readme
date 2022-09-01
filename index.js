@@ -13,6 +13,7 @@ WHEN I enter my email address
 THEN this is added to the section of the README entitled Questions, with instructions on how to reach me with additional questions
 WHEN I click on the links in the Table of Contents
 THEN I am taken to the corresponding section of the README*/
+
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
@@ -22,55 +23,53 @@ const generateMarkdown = require("./utils/generateMarkdown.js");
 const questions = [
   {
     type: "input",
-    name: "User Name",
-    message: "What is your Name? (required)",
-    validate: (userInput) => {
-      if (userInput) {
-        return true;
-      } else {
-        console.log("Please provide your name.");
-        return false;
-      }
-    },
+    name: "title",
+    message: "What is the title of this project?",
+  },
+  {
+    type: "input",
+    name: "description",
+    message: "How would you describe this project?",
+  },
+  {
+    type: "input",
+    name: "license",
+    message: "Please select a license for this project.",
+  },
+  {
+    type: "input",
+    name: "installation",
+    message: "How would someone install this project?",
+  },
+  {
+    type: "input",
+    name: "usage",
+    message: "How would someone use this project?",
+  },
+  {
+    type: "input",
+    name: "contributors",
+    message: "Who helped contribute to this project?",
+  },
+  {
+    type: "input",
+    name: "test",
+    message: "What are the ways to test the project?",
+  },
+  {
+    type: "input",
+    name: "username",
+    message: "What is your github username?",
+  },
+  {
+    type: "input",
+    name: "repository",
+    message: "What is the repository link for this project?",
   },
   {
     type: "input",
     name: "email",
-    message: "What is your email address? (required)",
-    validate: (userInput) => {
-      if (userInput) {
-        return true;
-      } else {
-        console.log("Please provide an email.");
-        return false;
-      }
-    },
-  },
-  {
-    type: "input",
-    name: "Project Name",
-    message: "What is your Project Name? (required)",
-    validate: (userInput) => {
-      if (userInput) {
-        return true;
-      } else {
-        console.log("Please provide an Project Name.");
-        return false;
-      }
-    },
-  },
-  {
-    type: "input",
-    name: "Project Name",
-    message: "What is your Project Name? (required)",
-    validate: (userInput) => {
-      if (userInput) {
-        return true;
-      } else {
-        console.log("Please provide and Project Name.");
-        return false;
-      }
-    },
+    message: "What is your email address?",
   },
 ];
 
