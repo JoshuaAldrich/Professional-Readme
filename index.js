@@ -14,12 +14,12 @@ THEN this is added to the section of the README entitled Questions, with instruc
 WHEN I click on the links in the Table of Contents
 THEN I am taken to the corresponding section of the README*/
 
-// TODO: Include packages needed for this application
+// packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generateMarkdown = require("./utils/generateMarkdown.js");
 
-// TODO: Create an array of questions for user input
+// array of questions for user input
 const questions = [
   {
     type: "input",
@@ -32,9 +32,10 @@ const questions = [
     message: "How would you describe this project?",
   },
   {
-    type: "input",
+    type: "list",
     name: "license",
     message: "Please select a license for this project.",
+    choices: ["Apache 2.0", "GNU GPL v3", "MIT", "Boost", "Mozilla"],
   },
   {
     type: "input",
@@ -75,7 +76,7 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-  fs.writeFile(fileName, data, (err) => {
+  fs.writeFile(fileName, generateMarkdown(data), (err) => {
     if (err) {
       return console.log(err);
     }
@@ -86,9 +87,9 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 function init() {
-  inquirer.prompt(questions).then(function (userInput) {
-    console.log(userInput);
-    writeToFile("README.md", generateMarkdown(userInput));
+  inquirer.prompt(questions).then(function (response) {
+    console.log(response);
+    writeToFile("README.md", response);
   });
 }
 // Function call to initialize app
